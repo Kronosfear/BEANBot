@@ -55,7 +55,7 @@ async def on_message(message):
 
             
         elif message.content.startswith('!bean'):
-            await client.send_message(message.channel, reply_message)
+            await client.send_message(message.channel, "http://i0.kym-cdn.com/photos/images/facebook/001/166/993/284.png")
         
         
 client.run('Mjk2NzI2MjExODE0NjIxMTg2.C72dJw.qgiXa_FvhGX9DY-8pK3ZbzV1FwY')
