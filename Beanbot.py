@@ -20,7 +20,7 @@ async def on_ready():
 async def on_message(message):
     if message.author != 'BEANBot#8947':
         if message.content.startswith('!info'):
-            stream_data = twitch.channels.by_name('sing_sing')
+            stream_data = twitch.channels.by_name('sing_sing')['status']
             if(stream_data == None):
                 reply_message = 'Master Sing is offline. FeelsBadMan'
             else:
