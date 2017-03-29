@@ -6,14 +6,6 @@ from random import randint
 
 
 
-client = discord.Client()
-stream_data = twitch.channels.by_name('sing_sing')['status']
-if(stream_data == None):
-    reply_message = 'Master Sing is offline'
-else:
-    reply_message = 'Master Sing is live - ' + str(stream_data) + ' FeelsGoodMan'
-print(reply_message)
-
 
 @client.event
 async def on_ready():
@@ -30,11 +22,14 @@ async def on_message(message):
             if(stream_data == None):
                 reply_message = 'Master Sing is offline. FeelsBadMan'
             else:
-                reply_message = 'Master Sing is live - ' + stream_data
+                reply_message = 'Master Sing is live - ' + stream_data + ' FeelsGoodMan'
             await client.send_message(message.channel, reply_message)
         elif message.content.startswith('!mymmr'):
             mmr = randint(0,9999)
-            reply_message = message.author + '\'s MMR is ' + str(mmr) + '!'
+            if (mmr > 5999):
+                reply_message = message.author + '\'s MMR is ' + str(mmr) + '! PogChamp'
+            else:
+                reply_message = message.author + '\'s MMR is ' + str(mmr) + '! LUL'
             await client.send_message(message.channel, reply_message)
         elif message.content.startswith('!mydong'):
             mmr = randint(0,25)
