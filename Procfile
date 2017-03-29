@@ -1,2 +1,2 @@
-python Beanbot.py
+worker: python Beanbot.py
 
