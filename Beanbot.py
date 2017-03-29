@@ -22,7 +22,7 @@ async def on_message(message):
             if(stream_data == None):
                 reply_message = 'Master Sing is offline. FeelsBadMan'
             else:
-                reply_message = 'Master Sing is live - ' + stream_data + ' FeelsGoodMan'
+                reply_message = 'http://www.twitch.tv/sing_sing \n Master Sing is live - ' + stream_data + ' FeelsGoodMan'
             await client.send_message(message.channel, reply_message)
         elif message.content.startswith('!mymmr'):
             mmr = randint(0,9999)
