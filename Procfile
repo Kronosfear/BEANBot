@@ -1,1 +1,1 @@
-worker: python TinkBot.py
+worker: python Beanbot.py
