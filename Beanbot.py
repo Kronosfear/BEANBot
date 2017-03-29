@@ -24,15 +24,23 @@ async def on_message(message):
             if(stream_data == None):
                 reply_message = 'Master Sing is offline. FeelsBadMan'
             else:
-                reply_message = 'Master Sing is live - ' + stream_data
+                reply_message = 'Master Sing is live - http://www.twitch.tv/sing_sing ' + stream_data
             await client.send_message(message.channel, reply_message)
         elif message.content.startswith('!mymmr'):
             mmr = randint(0,9999)
-            reply_message = message.author + '\'s MMR is ' + str(mmr) + '!'
+            reply_message = 'Hey ' + str(message.author).split('#', 1)[0]
+            reply_message = reply_message + ', your MMR is ' + str(mmr)
+            if  mmr > 5999:
+                reply_message = reply_message + ' PogChamp'
+            else:
+                reply_message = reply_message + ' LUL'
             await client.send_message(message.channel, reply_message)
         elif message.content.startswith('!mydong'):
             mmr = randint(0,25)
-            reply_message = message.author + '\'s dong hangs ' + str(mmr) + ' cm low. Jebaited'
+            reply_message = 'Hey ' + str(message.author).split('#', 1)[0]
+            reply_message = reply_message + ', your dong hangs '
+            reply_message = reply_message + str(mmr)
+            reply_message = reply_message + ' cms low Jebaited'
             await client.send_message(message.channel, reply_message)
         
         
