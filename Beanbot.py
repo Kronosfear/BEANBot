@@ -12,6 +12,22 @@ import json
 client = discord.Client()
 
 
+async def my_background_task():
+    await client.wait_until_ready()
+    channel = discord.Object(id='292869746293211146')
+    while not client.is_closed:
+        streamer_html = requests.get('https://api.twitch.tv/kraken/streams/sing_sing?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3').json()
+        print(streamer_html)
+        streamer = json.loads(json.dumps(streamer_html))
+        stream_data  = streamer['stream']
+        if(stream_data == None):
+            reply_message = 'Master Sing is offline'
+        else:
+            reply_message = 'Master Sing is live'
+        print(reply_message)
+        await client.change_presence(game=discord.Game(name=reply_message))
+        await asyncio.sleep(60) # task runs every 60 seconds
+
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -58,4 +74,6 @@ async def on_message(message):
             await client.send_message(message.channel, "http://i0.kym-cdn.com/photos/images/facebook/001/166/993/284.png")
         
         
+client.loop.create_task(my_background_task())
+
 client.run('Mjk2NzI2MjExODE0NjIxMTg2.C72dJw.qgiXa_FvhGX9DY-8pK3ZbzV1FwY')
