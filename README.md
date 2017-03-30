@@ -3,16 +3,10 @@ Discord bot for DotaBots server
 
 **List of commands:**
 
-!links - Simple command to direct new users to the useful_links channel
+!info - Check whether Singsing is online or not
 
-!git - Path to DotaBots GitHub repo
+!mymmr - Check what your true MMR is
 
-!path - Path to local Bot scripts directory
+!mydong - Jebaited
 
-!forum - Link to the Bot Scripting subforum on the official Dota 2 Dev channel
-
-!docs - Link to the ModDota Documentation on Bot Scripting
-
-!abilities - A link to Valve's documentation on inbuilt Ability names
-
-!items - Link to Valve's documentation on inbuilt Item names
+!bean - YOU FRICCIN MORON
