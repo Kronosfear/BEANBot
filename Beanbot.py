@@ -16,17 +16,16 @@ async def my_background_task():
     await client.wait_until_ready()
     channel = discord.Object(id='292869746293211146')
     while not client.is_closed:
-        streamer_html = requests.get('https://api.twitch.tv/kraken/streams/sing_sing?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3').json()
-        print(streamer_html)
+        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+        streamer_html = requests.get('https://api.twitch.tv/kraken/streams/sing_sing?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3', headers=headers).json()
         streamer = json.loads(json.dumps(streamer_html))
         stream_data  = streamer['stream']
         if(stream_data == None):
             reply_message = 'Master Sing is offline'
         else:
             reply_message = 'Master Sing is live'
-        print(reply_message)
         await client.change_presence(game=discord.Game(name=reply_message))
-        await asyncio.sleep(60) # task runs every 60 seconds
+        await asyncio.sleep(600) # task runs every 60 seconds
 
 @client.event
 async def on_ready():
@@ -39,14 +38,15 @@ async def on_ready():
 async def on_message(message):
     if message.author != 'BEANBot#8947':
         if message.content.startswith('!info'):
-            streamer_html = requests.get('https://api.twitch.tv/kraken/streams/sing_sing?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3').json()
-            print(streamer_html)
+            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+            streamer_html = requests.get('https://api.twitch.tv/kraken/streams/sing_sing?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3', headers=headers).json()
             streamer = json.loads(json.dumps(streamer_html))
             stream_data  = streamer['stream']
             if(stream_data == None):
                 reply_message = 'Master Sing is offline. FeelsBadMan'
             else:
                 reply_message = 'Master Sing is live - http://www.twitch.tv/sing_sing ' + str(stream_data)
+                print(reply_message)
             await client.send_message(message.channel, reply_message)
 
             
