@@ -45,7 +45,7 @@ async def on_message(message):
             if(stream_data == None):
                 reply_message = 'Master Sing is offline. FeelsBadMan'
             else:
-                reply_message = 'Master Sing is live - http://www.twitch.tv/sing_sing ' + str(stream_data)
+                reply_message = 'Master Sing is live - http://www.twitch.tv/sing_sing '
                 print(reply_message)
             await client.send_message(message.channel, reply_message)
 
