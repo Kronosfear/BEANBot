@@ -194,7 +194,7 @@ async def on_message(message):
 
 #-----------------------------------------------------------------------------------------------------------
 
-        elif message.content.startswith('!fuccboi'):
+        elif message.content.startswith('!thinking'):
             reply_message = 'https://cdn.discordapp.com/attachments/259440947434225664/298337030600130592/L5W7sIB.jpg'
             await client.send_message(message.channel, reply_message)
 
