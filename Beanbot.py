@@ -43,7 +43,7 @@ async def on_ready():
 
 
     
-#*************************************************************************************************************************
+#*****************************************************INFO****************************************************************
 
 
 
@@ -51,19 +51,68 @@ async def on_ready():
 async def on_message(message):
     if message.author != 'BEANBot#8947':
         if message.content.startswith('!info'):
-            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-            streamer_html = requests.get('https://api.twitch.tv/kraken/streams/sing_sing?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3', headers=headers).json()
-            streamer = json.loads(json.dumps(streamer_html))
-            stream_data  = streamer['stream']
-            if(stream_data == None):
-                reply_message = 'Master Sing is offline. FeelsBadMan'
+            streamer = None
+            if len(message.content) == 5:
+                headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+                streamer_html = requests.get('https://api.twitch.tv/kraken/streams/sing_sing?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3', headers=headers).json()
+                streamer = json.loads(json.dumps(streamer_html))
+                stream_data  = streamer['stream']
+                if(stream_data == None):
+                    reply_message = 'Master Sing is offline. FeelsBadMan'
+                else:
+                    reply_message = 'Master Sing is live - http://www.twitch.tv/sing_sing '
+                    print(reply_message)
+
+                    
             else:
-                reply_message = 'Master Sing is live - http://www.twitch.tv/sing_sing '
-                print(reply_message)
+                headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+                url = 'https://api.twitch.tv/kraken/streams/'
+                url = url + message.content[6:]
+                url= url + '?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3'
+                streamer_html = requests.get(url, headers=headers).json()
+                streamer = json.loads(json.dumps(streamer_html))
+                print(streamer)
+                if streamer == None:
+                    reply_message = 'No such stream found'
+                else:
+                    stream_data  = streamer['stream']
+                    if stream_data == None:
+                        reply_message = message.content[6:] + ' is offline'
+                    else:
+                        reply_message = message.content[6:] + ' is live'
+
             await client.send_message(message.channel, reply_message)
 
- #-----------------------------------------------------------------------------------------------------------
             
+#----------------------------------------------------STREAMS----------------------------------------------
+ 
+
+        elif message.content.startswith('!streams'):
+            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+            streamer_html = requests.get('https://api.twitch.tv/kraken/streams?game=Dota%202&client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3&language=en', headers=headers).json()
+            streamer = json.loads(json.dumps(streamer_html))
+            stream_data = streamer['streams']
+            i = 1
+            reply_message = """
+            Top 5 Dota streams:\n"""
+            for stream in stream_data[:5]:
+                print (json.dumps(stream, indent = 4))
+                name = stream['channel']['display_name']
+                url = "https://www.twitch.tv/" + stream['channel']['name']
+                reply_message = reply_message + str(i)
+                reply_message = reply_message + ". "
+                reply_message = reply_message + name
+                reply_message = reply_message + " - <"
+                reply_message = reply_message + url
+                reply_message = reply_message + ">\n"
+                i+=1
+            await client.send_message(message.channel, reply_message)
+
+
+            
+#-----------------------------------------------MYMMR------------------------------------------------------
+
+      
         elif message.content.startswith('!mymmr'):
             mmr = randint(0,9999)
             reply_message = 'Hey ' + str(message.author).split('#', 1)[0]
@@ -75,7 +124,7 @@ async def on_message(message):
             await client.send_message(message.channel, reply_message)
 
             
- #-----------------------------------------------------------------------------------------------------------
+ #-----------------------------------------------WEEB------------------------------------------------------
 
             
         elif message.content.startswith('!weeb'):
@@ -83,21 +132,21 @@ async def on_message(message):
             await client.send_message(message.channel, reply_message)
 
 
- #-----------------------------------------------------------------------------------------------------------
+ #-------------------------------------------------KOI------------------------------------------------------
 
 
         elif message.content.startswith('!koi'):
             reply_message = 'https://www.youtube.com/watch?v=gK57X6WWi5E'
             await client.send_message(message.channel, reply_message)
 
- #-----------------------------------------------------------------------------------------------------------
+ #-----------------------------------------------WUTFACE--------------------------------------------------
 
             
         elif message.content.startswith('!wutface'):
             reply_message = "https://cdn.discordapp.com/attachments/259440947434225664/297810508650905611/16998849_993717407439407_6365115539161661315_n.jpg"
             await client.send_message(message.channel, reply_message)
 
- #-----------------------------------------------------------------------------------------------------------
+ #--------------------------------------------LOVE-----------------------------------------------------------
 
         elif message.content.startswith('!love'):
             pride = message.content[6:]
@@ -126,19 +175,21 @@ async def on_message(message):
             await client.send_message(message.channel, reply_message)
 
             
- #-----------------------------------------------------------------------------------------------------------
+ #-------------------------------------------UNIOK-----------------------------------------------------------
+
 
         elif message.content.startswith('!uniok'):
             reply_message = 'http://i.imgur.com/HdxYRqM.png'
             await client.send_message(message.channel, reply_message)
 
- #-----------------------------------------------------------------------------------------------------------            
+
+ #--------------------------------------------MATUSLAP----------------------------------------------------------            
 
         elif message.content.startswith('!matuslap'):
             reply_message = 'https://gfycat.com/SlightVastCottonmouth'
             await client.send_message(message.channel, reply_message)
 
- #-----------------------------------------------------------------------------------------------------------
+ #---------------------------------------------GRILL--------------------------------------------------------
 
 
         elif message.content.startswith('!grill'):
@@ -154,7 +205,7 @@ async def on_message(message):
             await client.send_message(message.channel, reply_message)
 
 
- #-----------------------------------------------------------------------------------------------------------
+ #----------------------------------------------GSEARCH------------------------------------------------------
 
         elif message.content.startswith('!gsearch'):
             query = message.content[9:]
@@ -175,13 +226,17 @@ async def on_message(message):
                 reply_message = reply_message + "\n\n"
             await client.send_message(message.channel, reply_message)
 
- #-----------------------------------------------------------------------------------------------------------
+ #----------------------------------------------FUCCBOI-------------------------------------------------------
+
+ 
             
         elif message.content.startswith('!fuccboi'):
             reply_message = 'sheep is today\'s fuccboi'
             await client.send_message(message.channel, reply_message)
+
             
-#-----------------------------------------------------------------------------------------------------------
+            
+#------------------------------------------------MYDONG------------------------------------------------------
 
 
         elif message.content.startswith('!mydong'):
@@ -192,22 +247,22 @@ async def on_message(message):
             reply_message = reply_message + ' cms low Jebaited'
             await client.send_message(message.channel, reply_message)
 
-#-----------------------------------------------------------------------------------------------------------
+#----------------------------------------------THINKING------------------------------------------------------
 
         elif message.content.startswith('!thinking'):
             reply_message = 'https://cdn.discordapp.com/attachments/259440947434225664/298337030600130592/L5W7sIB.jpg'
             await client.send_message(message.channel, reply_message)
 
 
-#-----------------------------------------------------------------------------------------------------------
-
+#------------------------------------------------HELP-----------------------------------------------------
 
         elif message.content.startswith('!help'):
             reply_message = """
             ```
             
 Here are a list of commands Beanchild can reply to:
-!info - Check whether Singsing is live or not.
+!info - Check whether Singsing is live or not
+!streams - Top 5 Streams
 !mymmr - Check your true MMR.
 !mydong - ur mum knows about it anyway haHAA
 !love - KappaPride
@@ -216,10 +271,11 @@ Here are a list of commands Beanchild can reply to:
 !wutface - weebs
 !grill - Kreygasm
 !matuslap - dat ass
+!uniok - Marry me universe
         ```"""
             await client.send_message(message.channel, reply_message)
 
- #-----------------------------------------------------------------------------------------------------------
+ #-------------------------------------------------BEAN----------------------------------------------------------
 
  
         elif message.content.startswith('!bean'):
@@ -228,8 +284,6 @@ Here are a list of commands Beanchild can reply to:
 
 
 #*************************************************************************************************************************
-
-
 
 
 
