@@ -6,6 +6,7 @@ from random import randint
 import argparse
 import requests
 import json
+<<<<<<< HEAD
 import random
 from google import google
 
@@ -32,7 +33,12 @@ async def my_background_task():
 
 
 #*************************************************************************************************************************
+=======
 
+
+
+client = discord.Client()
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4
 
 
 @client.event
@@ -42,14 +48,20 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
+<<<<<<< HEAD
+
     
 #*****************************************************INFO****************************************************************
 
 
+
+=======
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4
 @client.event
 async def on_message(message):
     if message.author != 'BEANBot#8947':
         if message.content.startswith('!info'):
+<<<<<<< HEAD
             streamer = None
             if len(message.content) == 5:
                 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
@@ -70,17 +82,15 @@ async def on_message(message):
                 url= url + '?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3'
                 streamer_html = requests.get(url, headers=headers).json()
                 streamer = json.loads(json.dumps(streamer_html))
+                print(streamer)
                 if streamer == None:
                     reply_message = 'No such stream found'
                 else:
                     stream_data  = streamer['stream']
-                    reply_message = 'http://www.twitch.tv/'
                     if stream_data == None:
-                        reply_message += message.content[6:]
-                        reply_message += ' is offline'
+                        reply_message = message.content[6:] + ' is offline'
                     else:
-                        reply_message += message.content[6:]
-                        reply_message += ' is live'
+                        reply_message = message.content[6:] + ' is live'
 
             await client.send_message(message.channel, reply_message)
 
@@ -113,6 +123,20 @@ async def on_message(message):
             
 #-----------------------------------------------MYMMR------------------------------------------------------
 
+      
+=======
+            streamer_html = requests.get('https://api.twitch.tv/kraken/streams/sing_sing?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3').json()
+            print(streamer_html)
+            streamer = json.loads(json.dumps(streamer_html))
+            stream_data  = streamer['stream']
+            if(stream_data == None):
+                reply_message = 'Master Sing is offline. FeelsBadMan'
+            else:
+                reply_message = 'Master Sing is live - http://www.twitch.tv/sing_sing ' + str(stream_data)
+            await client.send_message(message.channel, reply_message)
+
+            
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4
         elif message.content.startswith('!mymmr'):
             mmr = randint(0,9999)
             reply_message = 'Hey ' + str(message.author).split('#', 1)[0]
@@ -123,6 +147,8 @@ async def on_message(message):
                 reply_message = reply_message + ' LUL'
             await client.send_message(message.channel, reply_message)
 
+            
+<<<<<<< HEAD
  #-----------------------------------------------WEEB------------------------------------------------------
 
             
@@ -237,6 +263,9 @@ async def on_message(message):
             
 #------------------------------------------------MYDONG------------------------------------------------------
 
+
+=======
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4
         elif message.content.startswith('!mydong'):
             mmr = randint(0,25)
             reply_message = 'Hey ' + str(message.author).split('#', 1)[0]
@@ -245,7 +274,7 @@ async def on_message(message):
             reply_message = reply_message + ' cms low Jebaited'
             await client.send_message(message.channel, reply_message)
 
-
+<<<<<<< HEAD
 #----------------------------------------------THINKING------------------------------------------------------
 
         elif message.content.startswith('!thinking'):
@@ -288,4 +317,12 @@ Here are a list of commands Beanchild can reply to:
 
         
 client.loop.create_task(my_background_task())
+
+=======
+            
+        elif message.content.startswith('!bean'):
+            await client.send_message(message.channel, "http://i0.kym-cdn.com/photos/images/facebook/001/166/993/284.png")
+        
+        
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4
 client.run('Mjk2NzI2MjExODE0NjIxMTg2.C72dJw.qgiXa_FvhGX9DY-8pK3ZbzV1FwY')

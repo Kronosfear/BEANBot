@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 bean/
 =======
+=======
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -12,7 +15,10 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+<<<<<<< HEAD
 >>>>>>> 8bb0c105ba205ee0aeab13251fb39e61ad2e47cd
+=======
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4
 build/
 develop-eggs/
 dist/
@@ -25,15 +31,21 @@ parts/
 sdist/
 var/
 <<<<<<< HEAD
+<<<<<<< HEAD
 wheels/
 =======
 >>>>>>> 8bb0c105ba205ee0aeab13251fb39e61ad2e47cd
+=======
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4
 *.egg-info/
 .installed.cfg
 *.egg
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
@@ -97,4 +109,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+<<<<<<< HEAD
 >>>>>>> 8bb0c105ba205ee0aeab13251fb39e61ad2e47cd
+=======
+>>>>>>> 3703f83fdb65d1042ac449a4dcec89955176d9d4

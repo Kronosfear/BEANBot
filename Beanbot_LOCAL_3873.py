@@ -34,7 +34,6 @@ async def my_background_task():
 #*************************************************************************************************************************
 
 
-
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -42,8 +41,10 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
+
     
 #*****************************************************INFO****************************************************************
+
 
 
 @client.event
@@ -70,17 +71,15 @@ async def on_message(message):
                 url= url + '?client_id=vpmzqjo3ab8dyeslvz2ia3r3yehif3'
                 streamer_html = requests.get(url, headers=headers).json()
                 streamer = json.loads(json.dumps(streamer_html))
+                print(streamer)
                 if streamer == None:
                     reply_message = 'No such stream found'
                 else:
                     stream_data  = streamer['stream']
-                    reply_message = 'http://www.twitch.tv/'
                     if stream_data == None:
-                        reply_message += message.content[6:]
-                        reply_message += ' is offline'
+                        reply_message = message.content[6:] + ' is offline'
                     else:
-                        reply_message += message.content[6:]
-                        reply_message += ' is live'
+                        reply_message = message.content[6:] + ' is live'
 
             await client.send_message(message.channel, reply_message)
 
@@ -113,6 +112,7 @@ async def on_message(message):
             
 #-----------------------------------------------MYMMR------------------------------------------------------
 
+      
         elif message.content.startswith('!mymmr'):
             mmr = randint(0,9999)
             reply_message = 'Hey ' + str(message.author).split('#', 1)[0]
@@ -123,6 +123,7 @@ async def on_message(message):
                 reply_message = reply_message + ' LUL'
             await client.send_message(message.channel, reply_message)
 
+            
  #-----------------------------------------------WEEB------------------------------------------------------
 
             
@@ -237,6 +238,7 @@ async def on_message(message):
             
 #------------------------------------------------MYDONG------------------------------------------------------
 
+
         elif message.content.startswith('!mydong'):
             mmr = randint(0,25)
             reply_message = 'Hey ' + str(message.author).split('#', 1)[0]
@@ -244,7 +246,6 @@ async def on_message(message):
             reply_message = reply_message + str(mmr)
             reply_message = reply_message + ' cms low Jebaited'
             await client.send_message(message.channel, reply_message)
-
 
 #----------------------------------------------THINKING------------------------------------------------------
 
@@ -288,4 +289,5 @@ Here are a list of commands Beanchild can reply to:
 
         
 client.loop.create_task(my_background_task())
+
 client.run('Mjk2NzI2MjExODE0NjIxMTg2.C72dJw.qgiXa_FvhGX9DY-8pK3ZbzV1FwY')
