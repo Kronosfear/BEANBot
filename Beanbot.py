@@ -210,7 +210,7 @@ async def on_message(message):
 
 #------------------------------------------EXPLOSION----------------------------------------------------
 
-elif message.content.startswith('!explosion'):
+        elif message.content.startswith('!explosion'):
             grill_list = ['https://cdn.discordapp.com/attachments/259440947434225664/299169011030294529/17759703_1225066617591719_652388841780661578_n.jpg',
                                       'https://cdn.discordapp.com/attachments/259440947434225664/299169012317814784/299442.jpg',
                                       'https://cdn.discordapp.com/attachments/259440947434225664/299169014222028810/17795722_10212222788942910_508290901603216617_n.jpg',
