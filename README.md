@@ -1,5 +1,5 @@
 # TinkBot
-Discord bot for DotaBots server
+Discord bot for Civil Chat server
 
 **List of commands:**
             
