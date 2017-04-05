@@ -100,7 +100,7 @@ async def on_message(message):
  #-----------------------------------------------------------------------------------------------------------
 
         elif message.content.startswith('!love'):
-            pride = message.content[5:]
+            pride = message.content[6:]
             if pride == '':
                 pride = 'Windows 10 updates'
             mmr = randint(0,100)
@@ -146,7 +146,7 @@ async def on_message(message):
                                       'https://cdn.discordapp.com/attachments/259440947434225664/298268447479955458/matu.jpg',
                                       'https://i.imgur.com/uVVvtEm.jpg',
                                       'https://pbs.twimg.com/media/CgP1ps8WEAAMuMp.jpg',
-                                      'https://instagram.fmaa1-1.fna.fbcdn.net/t51.2885-15/e35/14488244_558745484310394_67739065410335',
+                                      'https://cdn.discordapp.com/attachments/259440947434225664/299105853955637248/Screenshot_from_2017-04-05_14-29-21.png',
                                       'https://pbs.twimg.com/media/CLkmgJ6WsAApMxz.jpg'
                                     ]
             random.shuffle(grill_list)
@@ -192,7 +192,15 @@ async def on_message(message):
             reply_message = reply_message + ' cms low Jebaited'
             await client.send_message(message.channel, reply_message)
 
- #-----------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------
+
+        elif message.content.startswith('!fuccboi'):
+            reply_message = 'https://cdn.discordapp.com/attachments/259440947434225664/298337030600130592/L5W7sIB.jpg'
+            await client.send_message(message.channel, reply_message)
+
+
+#-----------------------------------------------------------------------------------------------------------
+
 
         elif message.content.startswith('!help'):
             reply_message = """
@@ -217,6 +225,14 @@ Here are a list of commands Beanchild can reply to:
         elif message.content.startswith('!bean'):
             await client.send_message(message.channel, "http://i0.kym-cdn.com/photos/images/facebook/001/166/993/284.png")
         
+
+
+#*************************************************************************************************************************
+
+
+
+
+
         
 client.loop.create_task(my_background_task())
 
