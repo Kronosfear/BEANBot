@@ -127,7 +127,8 @@ async def on_message(message):
 
             
         elif message.content.startswith('!weeb'):
-            if message.author == 'HERE I AM - Puck 2016#5286':
+            print(message.author)
+            if str(message.author) == 'HERE I AM - Puck 2016#5286':
                 reply_message = "You are not allowed to use this command you fake weeb"
             else:
                 reply_message = "WEEB VoHiYo THE VoHiYo NORMIES VoHiYo AWAY"
