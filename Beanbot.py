@@ -11,6 +11,7 @@ from google import google
 
 client = discord.Client()
 
+
 #*************************************************************************************************************************
 
 
@@ -231,6 +232,38 @@ async def on_message(message):
             reply_message = grill_list[0]
             await client.send_message(message.channel, reply_message)
 
+            
+#------------------------------------------SMUG----------------------------------------------------
+
+        elif message.content.startswith('!smug'):
+            smug_list = ['https://cdn.discordapp.com/attachments/299190496964771841/299191233245478913/1459243739540.jpg',
+                                      'https://cdn.discordapp.com/attachments/299190496964771841/299191240052965376/1444236147368.png',
+                                      'https://cdn.discordapp.com/attachments/299190496964771841/299191248886038529/1436640383591-3.png',
+                                      'https://cdn.discordapp.com/attachments/299190496964771841/299191250861555712/1436640383572-0.jpg',
+                                      'https://cdn.discordapp.com/attachments/299190496964771841/299191287456727043/1376763247995.png',
+                                      'https://cdn.discordapp.com/attachments/299190496964771841/299191291697299458/1371730299235.png',
+                                      'http://i.imgur.com/Dd7bbcQ.png',
+                                      'http://i.imgur.com/c1zbwwq.png',
+                                      'http://i.imgur.com/yS8IvBG.png',
+                                      'http://i.imgur.com/WcC6Poc.png',
+                                      'http://i.imgur.com/POQWJow.png',
+                                      'http://i.imgur.com/sh5YFcJ.png',
+                                      'http://i.imgur.com/1pwotJC.png',
+                                      'http://i.imgur.com/aWNzx6z.png',
+                                      'https://cdn.discordapp.com/attachments/292869746293211146/300994617619513356/1471581644134.png',
+                                      'http://i.imgur.com/JJhi5NP.jpg',
+                                    ]
+            random.shuffle(smug_list)
+            print(message.author)
+            if str(message.author) == 'koi#9765':
+                reply_message = 'http://i.imgur.com/gyZB2Bo.jpg'
+            else:
+                reply_message = smug_list[0]
+            await client.send_message(message.channel, reply_message)
+
+
+            
+
  #----------------------------------------------GSEARCH------------------------------------------------------
 
         elif message.content.startswith('!gsearch'):
@@ -273,11 +306,32 @@ async def on_message(message):
             await client.send_message(message.channel, reply_message)
 
 
+#------------------------------------------------MYLOVE------------------------------------------------------
+
+        elif message.content.startswith('!mylove'):
+            reply_message = 'Hey ' + str(message.author).split('#', 1)[0]
+            reply_message = reply_message + ' your true love is '
+            server = client.get_server('292869746293211146')
+            memb = [x for x in server.members]
+            random.shuffle(memb)
+            mem = memb[0]
+            if mem.nick == None:
+                    reply_message = reply_message + str(mem).split('#', 1)[0]
+            else:
+                    reply_message = reply_message + str(mem.nick).split('#', 1)[0]
+            await client.send_message(message.channel, reply_message)
+
+
 #----------------------------------------------THINKING------------------------------------------------------
 
         elif message.content.startswith('!thinking'):
-            reply_message = 'https://cdn.discordapp.com/attachments/259440947434225664/298337030600130592/L5W7sIB.jpg'
+            reply_message = 'https://cdn.discordapp.com/attachments/292869746293211146/300253029389565952/a9ef568c4c133ad983e836b5bcb90bcae68feb3190df7e37aa51958678c94134.png'
             await client.send_message(message.channel, reply_message)
+
+#----------------------------------------------SMORC------------------------------------------------------
+
+        elif message.content.startswith('!smorc'):
+            await client.send_message(message.channel, "https://cdn.discordapp.com/attachments/292869746293211146/300989271316365312/IMG_27042016_140301.png")
 
 
 #------------------------------------------------HELP-----------------------------------------------------
@@ -292,6 +346,8 @@ Here are a list of commands Beanchild can reply to:
 !mymmr - Check your true MMR.
 !mydong - ur mum knows about it anyway haHAA
 !love - KappaPride
+!mylove - gachiGASM
+!gsearch - Google Search !gsearch <search term>
 !weeb - the normies away
 !bean - FRICCIN
 !wutface - weebs
@@ -299,6 +355,10 @@ Here are a list of commands Beanchild can reply to:
 !matuslap - dat ass
 !thinking - Not :thonking:
 !uniok - Marry me universe
+!explosion - EKSUPUROOSHUN
+!fuccboi - who could it be :thinking:
+!smorc - Hey I have an idea
+
         ```"""
             await client.send_message(message.channel, reply_message)
 
@@ -307,6 +367,9 @@ Here are a list of commands Beanchild can reply to:
  
         elif message.content.startswith('!bean'):
             await client.send_message(message.channel, "http://i0.kym-cdn.com/photos/images/facebook/001/166/993/284.png")
+
+        
+
         
 
 
@@ -316,4 +379,6 @@ Here are a list of commands Beanchild can reply to:
 
         
 client.loop.create_task(my_background_task())
+
+
 client.run('Mjk2NzI2MjExODE0NjIxMTg2.C72dJw.qgiXa_FvhGX9DY-8pK3ZbzV1FwY')

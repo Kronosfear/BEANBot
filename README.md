@@ -1,4 +1,4 @@
-# TinkBot
+# BEANBot
 Discord bot for Civil Chat server
 
 **List of commands:**
@@ -21,6 +21,12 @@ Here are a list of commands Beanchild can reply to:
 !love - KappaPride
 
 
+!mylove - gachiGASM
+
+
+!gsearch - Google Search !gsearch <search term>
+
+
 !weeb - the normies away
 
 
@@ -41,3 +47,11 @@ Here are a list of commands Beanchild can reply to:
 
 !uniok - Marry me universe
 
+
+!explosion - EKSUPUROOSHUN
+
+
+!fuccboi - who could it be :thinking:
+
+
+!smorc - Hey I have an idea
