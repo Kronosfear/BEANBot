@@ -364,7 +364,7 @@ Here are a list of commands Beanchild can reply to:
 !uniok - Marry me universe
 !explosion - EKSUPUROOSHUN
 !fuccboi - who could it be :thinking:
-!smorc - Hey I have an idea
+!smorc - Hey I have an idea.
 
         ```"""
             await client.send_message(message.channel, reply_message)
