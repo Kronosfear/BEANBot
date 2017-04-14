@@ -300,7 +300,10 @@ async def on_message(message):
             reply_message = 'sheep is today\'s fuccboi'
             await client.send_message(message.channel, reply_message)
 
-            
+#--------------------------------------------------VEIN----------------------------------------------------
+
+        elif message.content.startswith('!vein'):
+            await client.send_message(message.channel, "https://im.ezgif.com/tmp/ezgif-1-470154e4f8.gif")
             
 #------------------------------------------------MYDONG------------------------------------------------------
 
