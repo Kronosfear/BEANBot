@@ -143,6 +143,13 @@ async def on_message(message):
             reply_message = 'https://www.youtube.com/watch?v=gK57X6WWi5E'
             await client.send_message(message.channel, reply_message)
 
+
+#------------------------------------------------BANE---------------------------------------------------
+
+        elif message.content.startswith('!bane'):
+            reply_message = 'http://www.operatorchan.org/pasta/src/140106838095.gif'
+            await client.send_message(message.channel, reply_message)
+
  #-----------------------------------------------WUTFACE--------------------------------------------------
 
             
@@ -367,10 +374,6 @@ Here are a list of commands Beanchild can reply to:
  
         elif message.content.startswith('!bean'):
             await client.send_message(message.channel, "http://i0.kym-cdn.com/photos/images/facebook/001/166/993/284.png")
-
-        
-
-        
 
 
 #*************************************************************************************************************************
