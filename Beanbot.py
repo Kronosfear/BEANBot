@@ -303,7 +303,7 @@ async def on_message(message):
 #--------------------------------------------------VEIN----------------------------------------------------
 
         elif message.content.startswith('!vein'):
-            await client.send_message(message.channel, "https://cdn.discordapp.com/attachments/259440947434225664/302481376505102337/unknown.png")
+            await client.send_message(message.channel, "https://cdn.discordapp.com/attachments/259440947434225664/302481919076073474/ezgif-1-11cf8dd748.gif")
             
 #------------------------------------------------MYDONG------------------------------------------------------
 
