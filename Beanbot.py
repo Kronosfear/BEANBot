@@ -144,6 +144,13 @@ async def on_message(message):
             await client.send_message(message.channel, reply_message)
 
 
+
+#----------------------------------------------VLECXIUS----------------------------------------------------
+
+        elif message.content.startswith('!vlecxius'):
+            await client.send_file(message.channel, 'images/vlecxius.png')
+
+
 #------------------------------------------------BANE---------------------------------------------------
 
         elif message.content.startswith('!bane'):
@@ -302,20 +309,37 @@ async def on_message(message):
             em.set_author(name='BEANBot', icon_url=client.user.default_avatar_url)
             await client.send_message(message.channel, embed=em)
 
+
+
+
+
  #----------------------------------------------FUCCBOI-------------------------------------------------------
 
+
  
-            
+
         elif message.content.startswith('!fuccboi'):
             reply_message = 'sheep is today\'s fuccboi'
             await client.send_message(message.channel, reply_message)
 
+
+
+
 #--------------------------------------------------VEIN----------------------------------------------------
+
+
+
 
         elif message.content.startswith('!vein'):
             await client.send_message(message.channel, "https://cdn.discordapp.com/attachments/259440947434225664/302481919076073474/ezgif-1-11cf8dd748.gif")
+
+
+            
             
 #------------------------------------------------MYDONG------------------------------------------------------
+
+
+
 
         elif message.content.startswith('!mydong'):
             mmr = randint(0,25)
@@ -326,7 +350,11 @@ async def on_message(message):
             await client.send_message(message.channel, reply_message)
 
 
+
+
 #------------------------------------------------MYLOVE------------------------------------------------------
+
+
 
         elif message.content.startswith('!mylove'):
             reply_message = 'Hey ' + str(message.author).split('#', 1)[0]
@@ -341,12 +369,19 @@ async def on_message(message):
                     reply_message = reply_message + str(mem.nick).split('#', 1)[0]
             await client.send_message(message.channel, reply_message)
 
+            
+
 
 #----------------------------------------------THINKING------------------------------------------------------
+
+
+
 
         elif message.content.startswith('!thinking'):
             reply_message = 'https://cdn.discordapp.com/attachments/292869746293211146/300253029389565952/a9ef568c4c133ad983e836b5bcb90bcae68feb3190df7e37aa51958678c94134.png'
             await client.send_message(message.channel, reply_message)
+
+            
 
 
 #-----------------------------------------------DAISUKI-----------------------------------------------------
