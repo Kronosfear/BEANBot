@@ -200,6 +200,13 @@ async def on_message(message):
             reply_message = 'https://gfycat.com/SlightVastCottonmouth'
             await client.send_message(message.channel, reply_message)
 
+
+#--------------------------------------------CULTURE----------------------------------------------------------
+
+        elif message.content.startswith('!culture'):
+            reply_message = 'https://cdn.discordapp.com/attachments/292869746293211146/303203330874671105/FB_IMG_1492359657145.jpg'
+            await client.send_message(message.channel, reply_message
+
  #---------------------------------------------GRILL--------------------------------------------------------
 
 
@@ -233,7 +240,8 @@ async def on_message(message):
                                       'https://cdn.discordapp.com/attachments/259440947434225664/299169075760857088/nICa2zf.jpg',
                                       'https://cdn.discordapp.com/attachments/259440947434225664/299169085286252544/wQL7geT.jpg',
                                       'https://cdn.discordapp.com/attachments/259440947434225664/299169092735205386/tumblr_o2ejc7yXPF1s21xzoo1_500.gif',
-                                      'https://cdn.discordapp.com/attachments/259440947434225664/299169109202173952/fg6nRds.png'
+                                      'https://cdn.discordapp.com/attachments/259440947434225664/299169109202173952/fg6nRds.png',
+                                      'https://cdn.discordapp.com/attachments/292869746293211146/303203627697176607/eJwFwUEOgyAQAMC_8ADWBbK43pqe7c30TJCgiQpl8dT07535qrsdalJb71UmgHWXWNqqpZcWctK5lHykUHfRsZwQeg9xO9PVBQyb.png'
                                     ]
             random.shuffle(grill_list)
             reply_message = grill_list[0]
@@ -348,29 +356,50 @@ async def on_message(message):
 
         elif message.content.startswith('!help'):
             reply_message = """
-            ```
             
-Here are a list of commands Beanchild can reply to:
 !info - Check whether Singsing is live or not
+
 !streams - Top 5 Streams
+
 !mymmr - Check your true MMR.
+
 !mydong - ur mum knows about it anyway haHAA
+
 !love - KappaPride
+
 !mylove - gachiGASM
+
 !gsearch - Google Search !gsearch <search term>
+
+!smug - Eyy
+
 !weeb - the normies away
+
 !bean - FRICCIN
+
 !wutface - weebs
+
 !grill - Kreygasm
+
 !matuslap - dat ass
+
 !thinking - Not :thonking:
+
 !uniok - Marry me universe
+
 !explosion - EKSUPUROOSHUN
+
 !fuccboi - who could it be :thinking:
+
 !smorc - Hey I have an idea.
 
-        ```"""
-            await client.send_message(message.channel, reply_message)
+!culture - Ah I see
+
+
+        """
+            em = discord.Embed(title='Here are the commands Beanchild can reply to', description=reply_message, colour=0x008A00)
+            em.set_author(name='BEANBot', icon_url=client.user.default_avatar_url)
+            await client.send_message(message.channel, embed=em)
 
  #-------------------------------------------------BEAN----------------------------------------------------------
 
@@ -380,7 +409,6 @@ Here are a list of commands Beanchild can reply to:
 
 
 #*************************************************************************************************************************
-
 
 
         
