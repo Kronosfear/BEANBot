@@ -205,7 +205,7 @@ async def on_message(message):
 
         elif message.content.startswith('!culture'):
             reply_message = 'https://cdn.discordapp.com/attachments/292869746293211146/303203330874671105/FB_IMG_1492359657145.jpg'
-            await client.send_message(message.channel, reply_message
+            await client.send_message(message.channel, reply_message)
 
  #---------------------------------------------GRILL--------------------------------------------------------
 
