@@ -298,7 +298,9 @@ async def on_message(message):
                 reply_message = reply_message + ">\n"
                 reply_message = reply_message + search_results[i].description
                 reply_message = reply_message + "\n\n"
-            await client.send_message(message.channel, reply_message)
+            em = discord.Embed(title='', description=reply_message, colour=0x008A00)
+            em.set_author(name='BEANBot', icon_url=client.user.default_avatar_url)
+            await client.send_message(message.channel, embed=em)
 
  #----------------------------------------------FUCCBOI-------------------------------------------------------
 
@@ -345,6 +347,14 @@ async def on_message(message):
         elif message.content.startswith('!thinking'):
             reply_message = 'https://cdn.discordapp.com/attachments/292869746293211146/300253029389565952/a9ef568c4c133ad983e836b5bcb90bcae68feb3190df7e37aa51958678c94134.png'
             await client.send_message(message.channel, reply_message)
+
+
+#-----------------------------------------------DAISUKI-----------------------------------------------------
+
+
+        elif message.content.startswith('!daisuki'):
+            await client.send_file(message.channel, 'images/daisuki.jpg')
+
 
 #----------------------------------------------SMORC------------------------------------------------------
 
