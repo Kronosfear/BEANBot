@@ -377,6 +377,10 @@ async def on_message(message):
 
 !bean - FRICCIN
 
+!bane - Dr. Pavel, I'm CIA
+
+!vein - BANE?
+
 !wutface - weebs
 
 !grill - Kreygasm
@@ -394,6 +398,7 @@ async def on_message(message):
 !smorc - Hey I have an idea.
 
 !culture - Ah I see
+
 
 
         """
