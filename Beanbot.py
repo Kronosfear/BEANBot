@@ -16,7 +16,7 @@ import youtube_dl
 
 client = discord.Client()
 
-
+voice = None
 
 #video_queue = queue.Queue()
 
@@ -486,16 +486,16 @@ async def on_message(message):
             vid  = soup.findAll(attrs={'class':'yt-uix-tile-link'})[0]
             reply_message = 'Currently playing ' + vid['title']
             await client.send_message(message.channel, reply_message)
-            voice = await client.join_voice_channel(message.author.voice_channel)
-            if not discord.opus.is_loaded():
-                discord.opus.load_opus()
+            if voice == None:
+                voice = await client.join_voice_channel(message.author.voice_channel)
             video_url = 'http://www.youtube.com' + vid['href']
             player = await voice.create_ytdl_player(video_url)
             player.start()
+            voice.disconnect()
 
 
         elif message.content.startswith('!stop'):
-            client.disconnect()
+            voice.disconnect()
             
 
 client.loop.create_task(my_background_task())
