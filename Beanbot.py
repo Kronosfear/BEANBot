@@ -471,9 +471,6 @@ async def on_message(message):
             await client.send_message(message.channel, "http://i0.kym-cdn.com/photos/images/facebook/001/166/993/284.png")
 
 
-#*************************************************************************************************************************
-
-
 #-----------------------------------------YOUTUBE STUFF---------------------------------------------------------
 
         elif message.content.startswith('!play'):
