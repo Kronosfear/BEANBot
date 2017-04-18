@@ -477,6 +477,7 @@ async def on_message(message):
 #-----------------------------------------YOUTUBE STUFF---------------------------------------------------------
 
         elif message.content.startswith('!play'):
+            global voice
             searchtext = message.content[6:]
             query = urllib.parse.quote(searchtext)
             url = "https://www.youtube.com/results?search_query=" + query
@@ -484,12 +485,12 @@ async def on_message(message):
             html = response.read()
             soup = BeautifulSoup(html, 'html.parser')
             vid  = soup.findAll(attrs={'class':'yt-uix-tile-link'})[0]
-            reply_message = 'Currently playing ' + vid['title']
             await client.send_message(message.channel, reply_message)
             if voice == None:
                 voice = await client.join_voice_channel(message.author.voice_channel)
             video_url = 'http://www.youtube.com' + vid['href']
             player = await voice.create_ytdl_player(video_url)
+            reply_message = 'Currently playing ' + vid['title']
             player.start()
             voice.disconnect()
 
