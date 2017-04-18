@@ -493,6 +493,12 @@ async def on_message(message):
             player = await voice.create_ytdl_player(video_url)
             player.start()
 
+
+        elif message.content.startswith('!stop'):
+            voice = await client.join_voice_channel(message.author.voice_channel)
+            voice.disconnect()
+            
+
 client.loop.create_task(my_background_task())
 
 
