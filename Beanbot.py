@@ -17,7 +17,6 @@ import youtube_dl
 client = discord.Client()
 
 voice = None
-
 #video_queue = queue.Queue()
 
 
@@ -44,6 +43,16 @@ async def my_background_task():
 
 
 #*************************************************************************************************************************
+
+
+def after_music():
+    coro = voice.disconnect()
+    fut = asyncio.run_coroutine_threadsafe(coro, client.loop)
+    try:
+        fut.result()
+    except:
+        print("Some problem")
+        pass
 
 
 
@@ -488,16 +497,18 @@ async def on_message(message):
             if voice == None:
                 voice = await client.join_voice_channel(message.author.voice_channel)
             video_url = 'http://www.youtube.com' + vid['href']
-            player = await voice.create_ytdl_player(video_url)
+            player = await voice.create_ytdl_player(video_url, after=after_music)
             reply_message = 'Currently playing ' + vid['title']
             await client.send_message(message.channel, reply_message)
-            player.start()
-            voice.disconnect()
+            player.start()  
 
 
         elif message.content.startswith('!stop'):
+            await client.send_message(message.channel, "Stopping song...")
+            voice  = client.voice_client_in(message.server)
             voice.disconnect()
-            
+
+
 
 client.loop.create_task(my_background_task())
 
