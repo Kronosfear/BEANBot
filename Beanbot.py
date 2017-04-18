@@ -477,6 +477,8 @@ async def on_message(message):
 #-----------------------------------------YOUTUBE STUFF---------------------------------------------------------
 
         elif message.content.startswith('!play'):
+            if client.isconnected():
+                client.disconnect()
             searchtext = message.content[6:]
             query = urllib.parse.quote(searchtext)
             url = "https://www.youtube.com/results?search_query=" + query
@@ -495,8 +497,7 @@ async def on_message(message):
 
 
         elif message.content.startswith('!stop'):
-            voice = await client.join_voice_channel(message.author.voice_channel)
-            voice.disconnect()
+            client.disconnect()
             
 
 client.loop.create_task(my_background_task())
