@@ -16,6 +16,8 @@ import youtube_dl
 
 client = discord.Client()
 
+
+
 #video_queue = queue.Queue()
 
 
@@ -485,6 +487,8 @@ async def on_message(message):
             reply_message = 'Currently playing ' + vid['title']
             await client.send_message(message.channel, reply_message)
             voice = await client.join_voice_channel(message.author.voice_channel)
+            if not discord.opus.is_loaded():
+                discord.opus.load_opus()
             video_url = 'http://www.youtube.com' + vid['href']
             player = await voice.create_ytdl_player(video_url)
             player.start()
