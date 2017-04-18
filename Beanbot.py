@@ -477,8 +477,6 @@ async def on_message(message):
 #-----------------------------------------YOUTUBE STUFF---------------------------------------------------------
 
         elif message.content.startswith('!play'):
-            if client.isconnected():
-                client.disconnect()
             searchtext = message.content[6:]
             query = urllib.parse.quote(searchtext)
             url = "https://www.youtube.com/results?search_query=" + query
