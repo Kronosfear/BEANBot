@@ -14,9 +14,21 @@ import urllib.parse
 from queue import *
 import youtube_dl
 
-client = discord.Client()
 
-voice = None
+
+class channel_details:
+    voice = None
+    mess_channel = None
+    
+
+
+
+
+
+
+
+details = channel_details
+client = discord.Client()
 #video_queue = queue.Queue()
 
 
@@ -46,12 +58,15 @@ async def my_background_task():
 
 
 def after_music():
-    coro = voice.disconnect()
-    fut = asyncio.run_coroutine_threadsafe(coro, client.loop)
+    sm = client.send_message(details.mess_channel, "Finished playing.")
+    coro = details.voice.disconnect()
+    fut1 = asyncio.run_coroutine_threadsafe(coro, client.loop)
+    fut2 = asyncio.run_coroutine_threadsafe(sm, client.loop)
     try:
-        fut.result()
+        fut2.result()
+        fut1.result()
     except:
-        print("Some problem")
+        # an error happened sending the message
         pass
 
 
@@ -64,11 +79,18 @@ async def on_ready():
     print('------')
 
     
-#*****************************************************INFO****************************************************************
+#*****************************************************MAIN****************************************************************
 
 
 @client.event
 async def on_message(message):
+
+#---------------------------------------------------LOGGING---------------------------------------------------------------
+    if message.content.startswith('!'):
+        log_message = str(message.author) + ' sent command '
+        log_message = log_message + message.content
+        print(log_message)
+
     if message.author != 'BEANBot#8947':
         if message.content.startswith('!info'):
             streamer = None
@@ -83,7 +105,7 @@ async def on_message(message):
                     reply_message = 'Master Sing is live - http://www.twitch.tv/sing_sing '
                     print(reply_message)
 
-                    
+                        
             else:
                 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
                 url = 'https://api.twitch.tv/kraken/streams/'
@@ -106,8 +128,37 @@ async def on_message(message):
             await client.send_message(message.channel, reply_message)
 
             
-#----------------------------------------------------STREAMS----------------------------------------------
- 
+
+
+#-----------------------------------------YOUTUBE STUFF---------------------------------------------------------
+
+        elif message.content.startswith('!play'):
+            searchtext = message.content[6:]
+            query = urllib.parse.quote(searchtext)
+            url = "https://www.youtube.com/results?search_query=" + query
+            response = urllib.request.urlopen(url)
+            html = response.read()
+            soup = BeautifulSoup(html, 'html.parser')
+            vid  = soup.findAll(attrs={'class':'yt-uix-tile-link'})[0]
+            if details.voice == None:
+                details.voice = await client.join_voice_channel(message.author.voice_channel)
+            elif details.voice != message.author.voice_channel:
+                await details.voice.disconnect()
+                details.voice = await client.join_voice_channel(message.author.voice_channel)
+            video_url = 'http://www.youtube.com' + vid['href']
+            details.mess_channel = message.channel
+            player = await details.voice.create_ytdl_player(video_url, after=after_music)
+            reply_message = 'Currently playing ' + vid['title']
+            await client.send_message(message.channel, reply_message)
+            player.start()  
+
+
+        elif message.content.startswith('!stop'):
+            await client.send_message(message.channel, "Stopping song...")
+            await details.voice.disconnect()
+
+            
+ #----------------------------------------------------STREAMS----------------------------------------------
 
         elif message.content.startswith('!streams'):
             headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
@@ -483,31 +534,9 @@ async def on_message(message):
 
 
 
-#-----------------------------------------YOUTUBE STUFF---------------------------------------------------------
-
-        elif message.content.startswith('!play'):
-            global voice
-            searchtext = message.content[6:]
-            query = urllib.parse.quote(searchtext)
-            url = "https://www.youtube.com/results?search_query=" + query
-            response = urllib.request.urlopen(url)
-            html = response.read()
-            soup = BeautifulSoup(html, 'html.parser')
-            vid  = soup.findAll(attrs={'class':'yt-uix-tile-link'})[0]
-            if voice == None:
-                voice = await client.join_voice_channel(message.author.voice_channel)
-            video_url = 'http://www.youtube.com' + vid['href']
-            player = await voice.create_ytdl_player(video_url, after=after_music)
-            reply_message = 'Currently playing ' + vid['title']
-            await client.send_message(message.channel, reply_message)
-            player.start()  
 
 
-        elif message.content.startswith('!stop'):
-            await client.send_message(message.channel, "Stopping song...")
-            voice  = client.voice_client_in(message.server)
-            voice.disconnect()
-
+        
 
 
 client.loop.create_task(my_background_task())
