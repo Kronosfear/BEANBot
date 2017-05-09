@@ -19,6 +19,7 @@ from discord.ext import commands
 class channel_details:
     voice = None
     mess_channel = None
+    prev_message = ''
     
 
 
@@ -497,6 +498,13 @@ async def on_message(message):
  
         elif message.content.startswith('!bean'):
             await client.send_message(message.channel, "http://i0.kym-cdn.com/photos/images/facebook/001/166/993/284.png")
+
+
+    if details.prev_message == message.content:
+        print("Previous message" + details.prev_message)
+        await client.delete_message(message)
+    details.prev_message = message.content
+    print(details.prev_message)
 
 
 
